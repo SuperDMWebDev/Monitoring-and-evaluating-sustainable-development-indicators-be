@@ -7,7 +7,9 @@ const errorHandler = require('./middleware/errorHandler');
 const configs = require('./src/constants/configConstants');
 const authRoutes = require('./src/routes/authRoutes');
 const accountRoutes = require('./src/routes/accountRoutes');
+const sdgRoutes = require('./src/routes/sdgRoutes');
 const urls = require('./src/constants/urlConstants');
+const db = require('./src/configs/firebase');
 
 const PORT = process.env.APP_PORT || 3001;
 const rootUrl = urls.ROOT_API_URL;
@@ -37,6 +39,7 @@ app.use(express.json());
 
 app.use(`${rootUrl}${urls.AUTH_PREFIX_API_URL}`, authRoutes);
 app.use(`${rootUrl}${urls.ACCOUNT_PREFIX_API_URL}`, accountRoutes);
+app.use(`${rootUrl}${urls.SDG_PREFIX_API_URL}`, sdgRoutes);
 
 app.all('*', (req, res) => {
 	res.status(404);
