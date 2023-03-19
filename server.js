@@ -45,6 +45,7 @@ app.use(`${rootUrl}${urls.SDG_PREFIX_API_URL}`, sdgRoutes);
 
 app.use('/', routes);
 app.use(`${rootUrl}${urls.REPORT_PREFIX_API_URL}`, apiRoutes);
+console.log(`${rootUrl}${urls.REPORT_PREFIX_API_URL}`);
 
 app.use(errorHandler);
 
