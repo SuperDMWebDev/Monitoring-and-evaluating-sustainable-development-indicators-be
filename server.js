@@ -13,7 +13,7 @@ const db = require('./src/configs/firebase');
 const routes = require('./src/routes/routes');
 const apiRoutes = require('./src/routes/apiRoutes');
 
-const PORT = process.env.APP_PORT || 3001;
+const PORT = process.env.APP_PORT || 3000;
 const rootUrl = urls.ROOT_API_URL;
 
 // custom middleware logger
