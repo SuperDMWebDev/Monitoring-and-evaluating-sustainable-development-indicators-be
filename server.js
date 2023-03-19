@@ -10,6 +10,9 @@ const accountRoutes = require('./src/routes/accountRoutes');
 const sdgRoutes = require('./src/routes/sdgRoutes');
 const urls = require('./src/constants/urlConstants');
 const db = require('./src/configs/firebase');
+const routes = require('./src/routes/routes');
+const apiRoutes = require('./src/routes/apiRoutes');
+
 
 const PORT = process.env.APP_PORT || 3001;
 const rootUrl = urls.ROOT_API_URL;
@@ -21,6 +24,7 @@ app.use(logger);
 const whitelist = ['http://localhost:3001', 'http://localhost:5000'];
 const corsOptions = {
 	origin: (origin, callback) => {
+		
 		if (whitelist.indexOf(origin) !== -1 || !origin) {
 			callback(null, true);
 		} else {
@@ -41,16 +45,8 @@ app.use(`${rootUrl}${urls.AUTH_PREFIX_API_URL}`, authRoutes);
 app.use(`${rootUrl}${urls.ACCOUNT_PREFIX_API_URL}`, accountRoutes);
 app.use(`${rootUrl}${urls.SDG_PREFIX_API_URL}`, sdgRoutes);
 
-app.all('*', (req, res) => {
-	res.status(404);
-	if (req.accepts('html')) {
-		res.sendFile(path.join(__dirname, 'views', '404.html'));
-	} else if (req.accepts('json')) {
-		res.json({ error: '404 Not Found' });
-	} else {
-		res.type('txt').send('404 Not Found');
-	}
-});
+app.use("/", routes);
+app.use("/api", apiRoutes);
 
 app.use(errorHandler);
 
