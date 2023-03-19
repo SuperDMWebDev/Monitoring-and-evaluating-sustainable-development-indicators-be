@@ -13,7 +13,6 @@ const db = require('./src/configs/firebase');
 const routes = require('./src/routes/routes');
 const apiRoutes = require('./src/routes/apiRoutes');
 
-
 const PORT = process.env.APP_PORT || 3001;
 const rootUrl = urls.ROOT_API_URL;
 
@@ -24,7 +23,6 @@ app.use(logger);
 const whitelist = ['http://localhost:3001', 'http://localhost:5000'];
 const corsOptions = {
 	origin: (origin, callback) => {
-		
 		if (whitelist.indexOf(origin) !== -1 || !origin) {
 			callback(null, true);
 		} else {
@@ -45,8 +43,8 @@ app.use(`${rootUrl}${urls.AUTH_PREFIX_API_URL}`, authRoutes);
 app.use(`${rootUrl}${urls.ACCOUNT_PREFIX_API_URL}`, accountRoutes);
 app.use(`${rootUrl}${urls.SDG_PREFIX_API_URL}`, sdgRoutes);
 
-app.use("/", routes);
-app.use("/api", apiRoutes);
+app.use('/', routes);
+app.use(`${rootUrl}${urls.REPORT_PREFIX_API_URL}`, apiRoutes);
 
 app.use(errorHandler);
 

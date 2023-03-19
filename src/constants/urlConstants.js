@@ -14,4 +14,6 @@ module.exports = Object.freeze({
 
 	//ALL sdg api
 	SDG_PREFIX_API_URL: `/sdgs`,
+
+	REPORT_PREFIX_API_URL: `/reports`,
 });
